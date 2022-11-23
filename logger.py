@@ -1,3 +1,5 @@
+from collections import deque
+
 class Logger(object):
 
     def __init__(self):
