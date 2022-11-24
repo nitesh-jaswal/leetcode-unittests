@@ -1,10 +1,11 @@
 import time
-from pprint import pprint
 import random
-from uuid import uuid4
 import unittest
-from logger import Logger
+from uuid import uuid4
 from typing import Tuple
+from pprint import pprint
+
+from logger import Logger
 class TestLogger(unittest.TestCase):
     def setUp(self):
         self.start_time = time.monotonic()
@@ -68,12 +69,14 @@ class TestLogger(unittest.TestCase):
                 msg_list.append((True, msg))
             previous_ts = msg[0]
         
-        pprint(msg_list)
+        # Uncomment to debug
+        # pprint(msg_list)
         for flag, msg in msg_list:
             try:
                 self.assertEqual(flag, self.logger.shouldPrintMessage(*msg))
-            except AssertionError:
+            except AssertionError: # This is not necessary. Have added it to help debug
                 print("Assertion error at:", flag, msg)
                 assert False
+
 if __name__ == "__main__":
     unittest.main()
